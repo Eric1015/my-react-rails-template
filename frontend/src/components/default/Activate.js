@@ -13,16 +13,16 @@ class Activate extends Component {
         let url = window.location.search.substr(1);
         let params = url.split("&");
         let key_value_pair = params[0].split("=");
-        let confirmation_token = null;
+        let activation_token = null;
         let email = null;
-        if (key_value_pair[0] === "email") {
-            email = decodeURIComponent(key_value_pair[1]);
+        if (key_value_pair[0] === "activation_token") {
+            activation_token = decodeURIComponent(key_value_pair[1]);
         }
         key_value_pair = params[1].split("=");
-        if (key_value_pair[0] === "confirmation_token") {
-            confirmation_token = decodeURIComponent(key_value_pair[1]);
+        if (key_value_pair[1] === "email") {
+            email = decodeURIComponent(key_value_pair[1]);
         }
-        axios.get("/api/v1/confirmation?token=" + confirmation_token)
+        axios.get("/api/v1/account_activations/" + activation_token + "?email=" + email)
         .then((result) => {
             console.log("Your account has been activated");
         }).catch((err) => {
