@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {Button, Form} from 'semantic-ui-react';
 import axios from 'axios';
 import ErrorMessages from './ErrorMessages';
-import history from './history';
+import history from '../../history';
 
 class SignUpForm extends Component {
     constructor() {
