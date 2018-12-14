@@ -1,0 +1,29 @@
+/* 
+ * This is the css file only for the default template.
+ * Feel free to delete this file when starting.
+ */
+.main-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 50%;
+}
+
+.home-button {
+    width: 40%;
+}
+
+.user-form {
+    width: 40%;
+    margin: 5vh auto;
+    border: 1px solid red;
+    border-radius: 1vw;
+    padding: 5vh 5vw;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}

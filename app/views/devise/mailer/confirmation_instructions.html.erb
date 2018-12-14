@@ -1,0 +1,5 @@
+<p>Welcome <%= @email %>!</p>
+
+<p>You can confirm your account email through the link below:</p>
+
+<p><%= link_to 'Activate', "#{ENV["HOST_NAME"]}/activate?email=#{@email}&confirmation_token=#{@token}" %></p>
