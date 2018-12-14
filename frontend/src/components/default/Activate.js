@@ -25,6 +25,7 @@ class Activate extends Component {
         axios.get("/api/v1/account_activations/" + activation_token + "?email=" + email)
         .then((result) => {
             console.log("Your account has been activated");
+            this.props.login(result.data.user.id);
         }).catch((err) => {
             
         });
@@ -37,7 +38,7 @@ class Activate extends Component {
                 <Button inverted color="red" className="home-button" onClick={this.handleClick}>Activate</Button>
                 <br></br>
                 <br></br>
-                <Button inverted color="red" className="home-button">Back</Button>
+                <Link to="/"><Button inverted color="red" className="home-button">Back</Button></Link>
             </div>
         )
     }

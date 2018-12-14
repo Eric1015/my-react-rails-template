@@ -10,6 +10,7 @@ import SignUp from './components/default/SignUp';
 import NotFound from './components/default/NotFound';
 import WrappedUserHome from './components/default/UserHome';
 import Activate from './components/default/Activate';
+import ThankYou from './components/default/ThankYou';
 
 class App extends Component {
   constructor() {
@@ -52,7 +53,8 @@ class App extends Component {
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} login={this.login}/>
               <Route path="/signup" component={SignUp} />
-              <Route path="/activate" component={Activate} />
+              <Route path="/activate" component={Activate} login={this.login}/>
+              <Route path="/thankyou" component={ThankYou} />
               <Route path="/users/:id" component={WrappedUserHome} user={this.state.user} />
               <Route component={NotFound} />
             </Switch>
