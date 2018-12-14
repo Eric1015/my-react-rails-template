@@ -30,4 +30,8 @@
 # Place files for /public in /frontend/public
 /public
 
+# Ignore the credentials for local testing
 /config/environment_variables.yml
+
+# Ignore the local configurations in VScode
+/.vscode
