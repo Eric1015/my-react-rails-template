@@ -10,7 +10,6 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX }, uniqueness: true
             
     validates :password, presence: true, length: { minimum: 6 }
-    validates_confirmation_of :password
     validates :password_confirmation, presence: true
 
     # Returns the hash digest of the given string.
