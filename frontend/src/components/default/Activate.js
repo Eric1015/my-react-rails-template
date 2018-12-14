@@ -22,10 +22,10 @@ class Activate extends Component {
         if (key_value_pair[0] === "email") {
             email = decodeURIComponent(key_value_pair[1]);
         }
-        axios.get("/api/v1/account_activations/" + activation_token + "?email=" + email)
+        axios.get("/api/v1/account_activations/" + activation_token + "/edit?email=" + email)
         .then((result) => {
             console.log("Your account has been activated");
-            this.props.login(result.data.user.id);
+            this.props.login(result.data.id);
         }).catch((err) => {
             
         });
