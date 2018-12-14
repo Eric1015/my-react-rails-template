@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {Button, Form} from 'semantic-ui-react';
 import axios from 'axios';
 import ErrorMessages from './ErrorMessages';
+import history from './history';
 
 class SignUpForm extends Component {
     constructor() {
@@ -20,7 +21,7 @@ class SignUpForm extends Component {
         event.preventDefault();
         axios.post('/api/v1/users', { user: {email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation} })
         .then(() => {
-            console.log("Thank you to sign up");
+            history.push("/thankyou");
         })
         .catch((err) => {
             let errors = [];
