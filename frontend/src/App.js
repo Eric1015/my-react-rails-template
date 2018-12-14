@@ -50,13 +50,13 @@ class App extends Component {
         <Router history={history}>
           <div>
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/login" component={Login} login={this.login}/>
-              <Route path="/signup" component={SignUp} />
-              <Route path="/activate" component={Activate} login={this.login}/>
-              <Route path="/thankyou" component={ThankYou} />
-              <Route path="/users/:id" component={WrappedUserHome} user={this.state.user} />
-              <Route component={NotFound} />
+              <Route exact path="/" render={() => <Home />} />
+              <Route path='/login' render={() => <Login login={this.login} />}/>
+              <Route path="/signup" render={() => <SignUp />} />
+              <Route path='/activate' render={() => <Activate login={this.login} />}/>
+              <Route path="/thankyou" render={() => <ThankYou />} />
+              <Route path='/users/:id' render={() => <WrappedUserHome user={this.state.user} />}/>
+              <Route render={() => <NotFound />} />
             </Switch>
           </div>
         </Router>

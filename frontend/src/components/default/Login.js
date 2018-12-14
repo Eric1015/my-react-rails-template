@@ -16,7 +16,8 @@ class LoginForm extends Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
-    handleSubmit() {
+    handleSubmit(event) {
+        event.preventDefault();
         const data = {session: {email: this.state.email, password: this.state.password}};
         axios.post('/api/v1/sessions', data)
         .then((res) => {

@@ -14,7 +14,7 @@ This repository provides a basic template consists of React as the front-end and
 * ActiveAdmin                               [Document Link](https://github.com/activeadmin/activeadmin)
 * API Versionist                            [Document Link](https://github.com/bploetz/versionist)
 * Image Upload (Paperclip)                  [Document Link](https://github.com/thoughtbot/paperclip)
-* Email Activation for sign up user
+* Email Activation
 * Password Reset
 
 ## Set Up
