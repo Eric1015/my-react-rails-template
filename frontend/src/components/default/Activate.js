@@ -12,14 +12,14 @@ class Activate extends Component {
     handleClick() {
         let url = window.location.search.substr(1);
         let params = url.split("&");
-        let key_value_pair = params[0].split("=");
         let activation_token = null;
         let email = null;
+        let key_value_pair = params[0].split("=");
         if (key_value_pair[0] === "activation_token") {
             activation_token = decodeURIComponent(key_value_pair[1]);
         }
         key_value_pair = params[1].split("=");
-        if (key_value_pair[1] === "email") {
+        if (key_value_pair[0] === "email") {
             email = decodeURIComponent(key_value_pair[1]);
         }
         axios.get("/api/v1/account_activations/" + activation_token + "?email=" + email)
