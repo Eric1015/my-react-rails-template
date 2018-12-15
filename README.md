@@ -1,6 +1,6 @@
 # My React Rails Template
 
-This repository provides a basic template consists of React as the front-end and Rails as the back-end and also login functionality provided with <code>devise</code> gem.
+This repository provides a basic user sign in template consists of React as the front-end and Rails as the back-end
 
 ## Dependencies
 * Ruby '2.4.4'
