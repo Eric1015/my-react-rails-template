@@ -46,7 +46,7 @@ class LoginForm extends Component {
                         <input name="email" type="email" onChange={this.handleChange}></input>
                     </Form.Field>
                     <Form.Field>
-                        <label>Password</label>
+                        <label>Password<Link to="/password-reset-request"> (forgot password)</Link></label>
                         <input name="password" type="password" onChange={this.handleChange}></input>
                     </Form.Field>
                     <Button inverted color="red" type="submit">Login</Button>

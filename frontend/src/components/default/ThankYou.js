@@ -7,8 +7,8 @@ class ThankYou extends Component {
         return (
             <div className="main-container">
                 <h1>Thank you!</h1>
-                <p>Check your email for account activation</p>
-                <Link to="/"><Button inverted color="red" className="home-button">Back</Button></Link>
+                <p>Check your email</p>
+                <Link to="/"><Button inverted color="red" className="home-button">Back to Home</Button></Link>
             </div>
         )
     }

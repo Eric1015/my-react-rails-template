@@ -6,4 +6,10 @@ class UserMailer < ApplicationMailer
       @url = url
       mail to: user.email, subject: "Account Activation"
     end
+
+    def password_reset(user, url)
+        @user = user
+        @url = url
+        mail to: user.email, subject: "Password Reset"
+      end
 end

@@ -11,6 +11,8 @@ import NotFound from './components/default/NotFound';
 import WrappedUserHome from './components/default/UserHome';
 import Activate from './components/default/Activate';
 import ThankYou from './components/default/ThankYou';
+import PasswordReset from './components/default/PasswordReset';
+import PasswordResetRequest from './components/default/PasswordResetRequest';
 
 class App extends Component {
   constructor() {
@@ -50,11 +52,13 @@ class App extends Component {
         <Router history={history}>
           <div>
             <Switch>
-              <Route exact path="/" render={() => <Home />} />
+              <Route exact path='/' render={() => <Home />} />
               <Route path='/login' render={() => <Login login={this.login} />}/>
               <Route path="/signup" render={() => <SignUp />} />
               <Route path='/activate' render={() => <Activate login={this.login} />}/>
-              <Route path="/thankyou" render={() => <ThankYou />} />
+              <Route path='/thankyou' render={() => <ThankYou />} />
+              <Route path='/password-reset-request' render={() => <PasswordResetRequest />} />
+              <Route path='/password-reset' render={() => <PasswordReset />} />
               <Route path='/users/:id' render={() => <WrappedUserHome user={this.state.user} />}/>
               <Route render={() => <NotFound />} />
             </Switch>

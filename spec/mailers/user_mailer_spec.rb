@@ -13,4 +13,17 @@ RSpec.describe UserMailer, type: :mailer do
             expect(mail.from).to eq(["noreply@example.com"])
         end
     end
+
+    describe "password reset" do
+        before :all do
+            @user = User.new(email: "example@example.com", password: "foobar")
+        end
+
+        let(:mail) {UserMailer.password_reset(@user, "")}
+
+        it "renders the header" do
+            expect(mail.subject).to eq("Password Reset")
+            expect(mail.from).to eq(["noreply@example.com"])
+        end
+    end
 end
