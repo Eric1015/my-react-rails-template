@@ -8,7 +8,8 @@ class V1::SessionsController < V1::BaseController
                 log_in(@user)
                 render json: @user, status: :created
             else
-                render json: @user.errors, status: :unprocessable_entity
+                @error = {account: " has not been activated"}
+                render json: @error, status: :unprocessable_entity
             end
         else
             @error = {errors: "Invalid Email/Password Combination"}
