@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe V1::UsersController, type: :controller do
     before :all do
-        @user = User.new(email: "example@example.com", password: "foobar", password_confirmation: "foobar")
+        @user = build(:user)
     end
 
     after :all do
