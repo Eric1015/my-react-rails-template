@@ -1,2 +1,2 @@
-class V1::BaseController < ApplicationController
+class V1::BaseController < ApiController
 end

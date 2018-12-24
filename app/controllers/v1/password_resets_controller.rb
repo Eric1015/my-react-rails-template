@@ -1,6 +1,4 @@
 class V1::PasswordResetsController < V1::BaseController
-    skip_before_action :verify_authenticity_token
-
     before_action :check_expiration, only: [:edit]
     before_action :get_user, only: [:edit]
     before_action :valid_user, only: [:edit]
