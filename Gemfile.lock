@@ -942,6 +942,7 @@ DEPENDENCIES
   byebug
   devise
   factory_bot_rails (~> 4.0)
+  jwt
   knock
   paperclip
   pg
