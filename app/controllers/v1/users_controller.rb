@@ -1,5 +1,5 @@
 class V1::UsersController < V1::BaseController
-    before_action :authenticate_user, only: [:update, :destroy]
+    before_action :authenticate_user
 
     def index
         @users = User.all
@@ -33,6 +33,15 @@ class V1::UsersController < V1::BaseController
         User.find(params[:id]).destroy
         @users = User.all
         render json: @users
+    end
+
+    def current
+        puts current_user.nil?
+        if current_user
+            render json: current_user, status: :ok
+        else
+            head(:unauthorized)
+        end
     end
 
     private

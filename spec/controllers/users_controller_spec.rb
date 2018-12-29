@@ -15,4 +15,11 @@ RSpec.describe V1::UsersController, type: :controller do
             expect(response).to have_http_status(:created)
         end
     end
+
+    describe "current action" do
+        it "should respond with unauthorized when no JWT is provided" do
+            get :current, params: {}
+            expect(response).to have_http_status(:unauthorized)
+        end
+    end
 end
