@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Button, Form} from 'semantic-ui-react';
-import axios from 'axios';
 import ErrorMessages from './ErrorMessages';
 import history from '../../history';
+
+const Api = require('../../lib/Api');
 
 class SignUpForm extends Component {
     constructor() {
@@ -19,8 +20,9 @@ class SignUpForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post('/api/v1/users', { user: {email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation} })
-        .then(() => {
+        const data = { user: {email: this.state.email, password: this.state.password, password_confirmation: this.state.password_confirmation} };
+        Api.createUser(data)
+        .then((res) => {
             history.push("/thankyou");
         })
         .catch((err) => {

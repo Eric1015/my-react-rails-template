@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Button} from 'semantic-ui-react';
-import axios from 'axios';
+import history from '../../history';
+
+const Api = require('../../lib/Api');
 
 class Activate extends Component {
     constructor() {
@@ -22,10 +24,10 @@ class Activate extends Component {
         if (key_value_pair[0] === "email") {
             email = decodeURIComponent(key_value_pair[1]);
         }
-        axios.get("/api/v1/account_activations/" + activation_token + "/edit?email=" + email)
+        Api.accountActivate(activation_token, email)
         .then((result) => {
             console.log("Your account has been activated");
-            this.props.login(result.data.id);
+            history.push('/');
         }).catch((err) => {
             
         });

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Button, Form} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
 import ErrorMessages from './ErrorMessages';
+
+const Api = require('../../lib/Api');
 
 class LoginForm extends Component {
     constructor() {
@@ -18,14 +19,13 @@ class LoginForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const data = {session: {email: this.state.email, password: this.state.password}};
-        axios.post('/api/v1/sessions', data)
+        Api.authenticateUser(this.state.email, this.state.password)
         .then((res) => {
-            const userID = res.data["id"];
-            this.props.login(userID);
+            this.props.login(res.jwt);
             console.log("You are logged in");
         })
         .catch((err) => {
+            console.log(err.response.data);
             let errors = [];
             for (let i in err.response.data) {
                 let error = i + " " + err.response.data[i];

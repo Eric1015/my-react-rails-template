@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Button, Form} from 'semantic-ui-react';
 import ErrorMessages from './ErrorMessages';
-import axios from 'axios';
 import history from '../../history';
+
+const Api = require('../../lib/Api');
 
 class PasswordResetRequestForm extends Component {
     constructor() {
@@ -19,7 +20,7 @@ class PasswordResetRequestForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post("/api/v1/password_resets", {password_reset: {email: this.state.email}})
+        Api.passwordResetRequest(this.state.email)
         .then((result) => {
             history.push("/thankyou");
         }).catch((err) => {

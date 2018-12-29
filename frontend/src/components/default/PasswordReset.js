@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Button, Form} from 'semantic-ui-react';
 import ErrorMessages from './ErrorMessages';
-import axios from 'axios';
+import history from '../../history';
+
+const Api = require('../../lib/Api');
 
 class PasswordResetForm extends Component {
     constructor() {
@@ -30,10 +32,10 @@ class PasswordResetForm extends Component {
         if (key_value_pair[0] === "email") {
             email = decodeURIComponent(key_value_pair[1]);
         }
-        axios.get("/api/v1/password_resets/" + reset_token + "/edit?email=" + email)
-        .then((result) => {
+        Api.passwordReset(reset_token, email)
+        .then((res) => {
             console.log("Your password has been reset");
-            this.props.login(result.data.id);
+            history.push('/');
         }).catch((err) => {
             let errors = [];
             for (let i in err.response.data) {
