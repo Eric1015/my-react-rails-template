@@ -4,11 +4,12 @@ Rails.application.routes.draw do
 
   scope :api do
     api_version(:module => "V1", :path => {:value => "v1"}) do
-    resources :account_activations
-      resources :users, except: [:edit, :new]
-      resources :sessions, only: [:create, :destroy]
-      resources :account_activations, only: [:edit]
-      resources :password_resets, only: [:create, :edit]
+        resources :account_activations
+        resources :user_token, only: [:create]
+        resources :users, except: [:edit, :new]
+        resources :sessions, only: [:create, :destroy]
+        resources :account_activations, only: [:edit]
+        resources :password_resets, only: [:create, :edit]
     end
   end
 
