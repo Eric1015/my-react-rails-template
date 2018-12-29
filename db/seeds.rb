@@ -8,3 +8,7 @@
 if !AdminUser.exists?
     AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 end
+
+User.where(email: "example@example.com").delete_all
+
+example_user = User.create(email: "example@example.com", password: "foobar", password_confirmation: "foobar", activated: true, activated_at: Time.zone.now)
