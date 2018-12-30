@@ -26,5 +26,9 @@ FactoryBot.define do
             password { "foobar" }
             password_confirmation { "foobal" }
         end
+
+        trait :activated do
+            activated { true }
+        end
     end
   end
