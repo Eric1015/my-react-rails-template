@@ -1,5 +1,5 @@
 class V1::UsersController < V1::BaseController
-    before_action :authenticate_user
+    before_action :authenticate_user, only: [:update, :destroy]
 
     def index
         @users = User.all
@@ -36,7 +36,9 @@ class V1::UsersController < V1::BaseController
     end
 
     def current
-        puts current_user.nil?
+        if request.headers.include?('Authorization')
+            current_user = get_user(request.headers['Authorization'])
+        end
         if current_user
             render json: current_user, status: :ok
         else
@@ -48,5 +50,11 @@ class V1::UsersController < V1::BaseController
 
     def user_params
         params.require(:user).permit(:email, :password, :password_confirmation)
+    end
+
+    def get_user(jwt)
+        decoded_token = JWT.decode jwt, Rails.application.secrets.secret_key_base, true, { :algorithm => 'HS256' }
+        current_user = User.find((decoded_token[0])['sub'])
+        current_user
     end
 end

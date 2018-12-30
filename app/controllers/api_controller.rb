@@ -21,4 +21,5 @@ end
 
 class ApiController < ActionController::API
     include SessionsHelper
+    include Knock::Authenticable
 end
