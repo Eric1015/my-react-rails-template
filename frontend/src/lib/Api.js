@@ -14,8 +14,9 @@ module.exports = {
     },
 
     getCurrentUser: function(jwt) {
-        let config = {headers: {}};
-        if (jwt) config['headers']['Authorization'] = 'Bearer ' + jwt;
+        let config = {headers: {Authorization: null}};
+        if (jwt) config['headers']['Authorization'] = jwt;
+        console.log(config['headers']['Authorization']);
         return axios.get('/api/' + version + '/users/current', config)
         .then((result) => {
             return result.data;
@@ -25,7 +26,7 @@ module.exports = {
     },
 
     createUser: function(user) {
-        let data = { user };
+        let data = user;
         return axios.post('/api/' + version + '/users', data)
         .then((result) => {
             return result.data;

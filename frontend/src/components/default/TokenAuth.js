@@ -27,7 +27,7 @@ class TokenAuth extends Component {
         const { cookies } = this.props;
         Api.getCurrentUser(jwt)
         .then((res) => {
-            this.setState({ user: res.data, jwt: jwt }, () => {
+            this.setState({ user: res, jwt: jwt }, () => {
                 // Cookie will last for 1 day
                 cookies.set(this.state.cookieName, jwt, {path: '/', maxAge: 86400})
                 history.push("/users/" + this.state.user.id);
