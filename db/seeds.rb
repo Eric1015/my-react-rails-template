@@ -11,4 +11,4 @@ end
 
 User.where(email: "example@example.com").delete_all
 
-example_user = User.create(email: "example@example.com", password: "foobar", password_confirmation: "foobar", activated: true, activated_at: Time.zone.now)
+example_user = User.create(email: "example@example.com", password: "foobar", password_confirmation: "foobar", activated: true, activated_at: Time.zone.now) unless Rails.env.test?
