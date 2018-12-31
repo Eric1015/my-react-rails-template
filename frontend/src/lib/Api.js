@@ -35,7 +35,7 @@ module.exports = {
     },
 
     accountActivate: function(activation_token, email) {
-        let data = {email: email}
+        let data = {params: {email: email}};
         return axios.get('/api/' + version + '/account_activations/' + activation_token + '/edit', data)
         .then((result) => {
             return result.data;
@@ -55,7 +55,7 @@ module.exports = {
     },
 
     passwordReset: function(reset_token, email) {
-        let data = {email: email};
+        let data = {params: {email: email}};
         return axios.get('/api/' + version + '/password_resets/' + reset_token + '/edit', data)
         .then((result) => {
             return result.data;
