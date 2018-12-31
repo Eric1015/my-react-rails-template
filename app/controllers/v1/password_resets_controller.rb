@@ -8,7 +8,7 @@ class V1::PasswordResetsController < V1::BaseController
         if @user
             @user.create_reset_digest
             params = {
-                rest_token: @user.reset_token,
+                reset_token: @user.reset_token,
                 email: @user.email 
             }
             @url = "#{ENV['HOST_NAME']}/password-reset?#{params.to_query}"
