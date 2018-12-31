@@ -7,18 +7,19 @@ This repository provides a basic user sign in template consists of React as the 
 * Rails '5.0' or greater
 * Rspec '3.8'
 * React Router
+* React Cookie
 * Semantic UI React
 * Axios
 
 ## Functionalities
 * ActiveAdmin                               [Document Link](https://github.com/activeadmin/activeadmin)
 * API Versionist                            [Document Link](https://github.com/bploetz/versionist)
-* Image Upload (Paperclip)                  [Document Link](https://github.com/thoughtbot/paperclip)
 * Email Activation
 * Password Reset
+* Image upload with Active Storage (using amazon S3 by default)
 
 ## Set Up
-Set up the AWS for image uploading of paperclip
+Set up the AWS for image uploading of Active Storage
 ```
 S3_BUCKET_NAME=your_bucket_name
 ```
