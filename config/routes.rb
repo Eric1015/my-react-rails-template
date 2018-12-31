@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   scope :api do
     api_version(:module => "V1", :path => {:value => "v1"}) do
-        resources :account_activations
         resources :user_token, only: [:create]
         get 'users/current', to: 'users#current'
         resources :users, except: [:edit, :new]
