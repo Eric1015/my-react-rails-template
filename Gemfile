@@ -18,10 +18,6 @@ gem 'activeadmin'
 # API version manager
 gem 'versionist'
 
-# ImageUploader
-gem 'paperclip'
-gem 'aws-sdk', '~> 3'
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
