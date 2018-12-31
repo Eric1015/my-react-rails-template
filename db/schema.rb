@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 2018_12_31_185525) do
     t.datetime "updated_at", null: false
     t.string "reset_digest"
     t.datetime "reset_sent_at"
-    t.string "remember_digest"
   end
 
 end
