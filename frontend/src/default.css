@@ -27,3 +27,9 @@
     color: red;
     text-align: center;
 }
+
+.right-corner {
+    position: absolute;
+    right: 0;
+    top: 0;
+}

@@ -29,7 +29,7 @@ class TokenAuth extends Component {
         .then((res) => {
             this.setState({ user: res, jwt: jwt }, () => {
                 // Cookie will last for 1 day
-                cookies.set(this.state.cookieName, jwt, {path: '/', maxAge: 86400})
+                cookies.set(this.state.cookieName, jwt, {path: '/', maxAge: 86400});
                 history.push("/users/" + this.state.user.id);
             })
         }).catch((err) => {
@@ -46,7 +46,10 @@ class TokenAuth extends Component {
     autoLogin() {
         const { cookies } = this.props;
         let jwt = cookies.get(this.state.cookieName);
-        if (jwt) this.login(jwt);
+        if (jwt) {
+            this.login(jwt);
+            cookies.set(this.state.cookieName, jwt, {path: '/', maxAge: 86400});
+        }
     }
 
     componentDidMount() {
@@ -57,7 +60,7 @@ class TokenAuth extends Component {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route exact path='/' render={() => <Home />} />
+                    <Route exact path='/' render={() => <Home appState={this.state} logout={this.logout}/>} />
                     <Route path='/login' render={() => <Login login={this.login} />} />
                     <Route path="/signup" render={() => <SignUp />} />
                     <Route path='/activate' render={() => <Activate login={this.login} />} />
