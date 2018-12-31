@@ -25,12 +25,12 @@ class PasswordResetForm extends Component {
         let reset_token = null;
         let email = null;
         let key_value_pair = params[0].split("=");
-        if (key_value_pair[0] === "reset_token") {
-            reset_token = decodeURIComponent(key_value_pair[1]);
-        }
-        key_value_pair = params[1].split("=");
         if (key_value_pair[0] === "email") {
             email = decodeURIComponent(key_value_pair[1]);
+        }
+        key_value_pair = params[1].split("=");
+        if (key_value_pair[0] === "reset_token") {
+            reset_token = decodeURIComponent(key_value_pair[1]);
         }
         Api.passwordReset(reset_token, email)
         .then((res) => {
