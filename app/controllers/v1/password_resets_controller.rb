@@ -22,7 +22,6 @@ class V1::PasswordResetsController < V1::BaseController
 
     def edit
         if @user.update_attributes(user_params)
-            log_in @user
             render json: @user, status: :accepted
         else
             render json: @user.errors, status: :unprocessable_entity
