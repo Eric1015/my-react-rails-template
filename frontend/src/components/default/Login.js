@@ -25,7 +25,6 @@ class LoginForm extends Component {
             console.log("You are logged in");
         })
         .catch((err) => {
-            console.log(err.response.data);
             let errors = [];
             for (let i in err.response.data) {
                 let error = i + " " + err.response.data[i];

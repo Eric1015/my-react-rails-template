@@ -15,8 +15,7 @@ module.exports = {
 
     getCurrentUser: function(jwt) {
         let config = {headers: {Authorization: null}};
-        if (jwt) config['headers']['Authorization'] = jwt;
-        console.log(config['headers']['Authorization']);
+        if (jwt) config['headers']['Authorization'] = 'Bearer ' + jwt;
         return axios.get('/api/' + version + '/users/current', config)
         .then((result) => {
             return result.data;
@@ -60,6 +59,17 @@ module.exports = {
         return axios.get('/api/' + version + '/password_resets/' + reset_token + '/edit', data)
         .then((result) => {
             return result.data;
+        }).catch((err) => {
+            throw err;
+        });
+    },
+
+    destroyUser: function(jwt, id) {
+        let config = {headers: {Authorization: null}};
+        if (jwt) config['headers']['Authorization'] = 'Bearer ' + jwt;
+        return axios.delete('/api/' + version + '/users/' + id, config)
+        .then((result) => {
+            return;
         }).catch((err) => {
             throw err;
         });

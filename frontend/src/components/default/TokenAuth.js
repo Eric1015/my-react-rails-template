@@ -38,7 +38,7 @@ class TokenAuth extends Component {
     }
 
     logout() {
-        const { cookies } = this.state;
+        const { cookies } = this.props;
         this.setState({ user: null, jwt: null });
         cookies.remove(this.state.cookieName);
     }
@@ -64,7 +64,7 @@ class TokenAuth extends Component {
                     <Route path='/thankyou' render={() => <ThankYou />} />
                     <Route path='/password-reset-request' render={() => <PasswordResetRequest />} />
                     <Route path='/password-reset' render={() => <PasswordReset />} />
-                    <Route path='/users/:id' render={() => <WrappedUserHome user={this.state.user} />} />
+                    <Route path='/users/:id' render={() => <WrappedUserHome appState={this.state} logout={this.logout}/>} />
                     <Route render={() => <NotFound />} />
                 </Switch>
             </Router>
