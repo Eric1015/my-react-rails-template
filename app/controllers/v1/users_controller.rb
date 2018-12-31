@@ -1,5 +1,5 @@
 class V1::UsersController < V1::BaseController
-    before_action :authenticate_user, only: [:update, :destroy]
+    before_action :verify_by_jwt, only: [:update, :destroy]
 
     def index
         @users = User.all
@@ -30,14 +30,20 @@ class V1::UsersController < V1::BaseController
     end
 
     def destroy
-        User.find(params[:id]).destroy
-        @users = User.all
-        render json: @users
+        user = User.find(params[:id])
+        if user.id != current_user.id
+            head(:unauthorized)
+        elsif user
+            user.destroy
+            head(:ok)
+        else
+            head(:not_found)
+        end
     end
 
     def current
         if request.headers.include?('Authorization')
-            current_user = get_user(request.headers['Authorization'])
+            current_user = get_user(request.headers['Authorization'].split.last)
         end
         if current_user
             render json: current_user, status: :ok
@@ -50,11 +56,5 @@ class V1::UsersController < V1::BaseController
 
     def user_params
         params.require(:user).permit(:email, :password, :password_confirmation)
-    end
-
-    def get_user(jwt)
-        decoded_token = JWT.decode jwt, Rails.application.secrets.secret_key_base, true, { :algorithm => 'HS256' }
-        current_user = User.find((decoded_token[0])['sub'])
-        current_user
     end
 end

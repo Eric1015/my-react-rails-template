@@ -4,6 +4,10 @@ FactoryBot.define do
         password { "foobar" }
         password_confirmation { "foobar" }
 
+        trait :another do
+            email { "example1@example.com" }
+        end
+
         trait :email_invalid do
             email { "example.com" }
         end
