@@ -7,8 +7,7 @@ RSpec.configure do |c|
 
 RSpec.describe V1::PasswordResetsController, type: :controller do
     before :all do
-        @user = User.create(email: "example@example.com", password: "foobar", password_confirmation: "foobar")
-        @user.activate
+        @user = create(:user, :activated)
         @password_digest = @user.password_digest
     end
 
