@@ -1,7 +1,7 @@
 class V1::PasswordResetsController < V1::BaseController
-    before_action :check_expiration, only: [:edit]
     before_action :get_user, only: [:edit]
     before_action :valid_user, only: [:edit]
+    before_action :check_expiration, only: [:edit]
 
     def create
         @user = User.find_by(email: params[:password_reset][:email].downcase)
@@ -36,7 +36,7 @@ class V1::PasswordResetsController < V1::BaseController
 
     def get_user
         @user = User.find_by(email: params[:email])
-      end
+    end
     
     def valid_user
         unless (@user && @user.activated? &&
