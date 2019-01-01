@@ -19,7 +19,7 @@ RSpec.describe "UserPasswordResets", type: :request do
             puts last_email.body.to_s
             reset_token = email_text.split("reset_token=")[1].split('"')[0]
 
-            get edit_v1_password_reset_path("#{reset_token}"), params: {email: @user.email, user: {password: "foobal", password_confirmation: "foobal"}}
+            get edit_v1_password_reset_path("#{reset_token}"), params: {email: @user.email, password: "foobal", password_confirmation: "foobal"}
             expect(response).to have_http_status(:accepted)
             new_digest = User.find_by(email: @user.email).password_digest
             expect(new_digest).not_to eq(original_digest)

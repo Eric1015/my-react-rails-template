@@ -21,7 +21,7 @@ class V1::PasswordResetsController < V1::BaseController
     end
 
     def edit
-        if @user.update_attributes(user_params)
+        if @user.update_attributes(password_params)
             render json: @user, status: :accepted
         else
             render json: @user.errors, status: :unprocessable_entity
@@ -34,11 +34,19 @@ class V1::PasswordResetsController < V1::BaseController
         params.require(:user).permit(:password, :password_confirmation)
     end
 
+    def password_params
+        params.permit(:password, :password_confirmation)
+    end
+
     def get_user
         @user = User.find_by(email: params[:email])
     end
     
     def valid_user
+        puts @user.attributes
+        puts !@user.nil?
+        puts @user.activated?
+        puts @user.authenticated?(:reset, params[:id])
         unless (@user && @user.activated? &&
                 @user.authenticated?(:reset, params[:id]))
             @error = {errors: "Unauthorized"}

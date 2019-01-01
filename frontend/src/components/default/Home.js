@@ -17,7 +17,7 @@ class Home extends Component {
     render() {
         let buttons = null;
         if (this.props.appState.user != null) {
-            buttons = <HeaderButtons appState={this.props.appState} />;
+            buttons = <HeaderButtons appState={this.props.appState} logout={this.props.logout}/>;
         }
         return (
             <div>
