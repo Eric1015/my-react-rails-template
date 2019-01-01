@@ -32,7 +32,7 @@ class PasswordResetForm extends Component {
         if (key_value_pair[0] === "reset_token") {
             reset_token = decodeURIComponent(key_value_pair[1]);
         }
-        Api.passwordReset(reset_token, email)
+        Api.passwordReset(reset_token, email, this.state.password, this.state.password_confirmation)
         .then((res) => {
             console.log("Your password has been reset");
             history.push('/');

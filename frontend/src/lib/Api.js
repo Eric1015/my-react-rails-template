@@ -54,8 +54,8 @@ module.exports = {
         });
     },
 
-    passwordReset: function(reset_token, email) {
-        let data = {params: {email: email}};
+    passwordReset: function(reset_token, email, password, password_confirmation) {
+        let data = {params: {email: email, user: {password: password, password_confirmation: password_confirmation}}};
         return axios.get('/api/' + version + '/password_resets/' + reset_token + '/edit', data)
         .then((result) => {
             return result.data;
