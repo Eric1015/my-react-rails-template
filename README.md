@@ -6,6 +6,7 @@ This repository provides a basic user sign in template consists of React as the 
 * Ruby '2.4.4'
 * Rails '5.0' or greater
 * Rspec '3.8'
+* Knock (JWT)
 * React Router
 * React Cookie
 * Semantic UI React
@@ -16,6 +17,7 @@ This repository provides a basic user sign in template consists of React as the 
 * API Versionist                            [Document Link](https://github.com/bploetz/versionist)
 * Email Activation
 * Password Reset
+* Using JWT to secure the API
 * Image upload with Active Storage (using amazon S3 by default)
 
 ## Set Up
@@ -75,7 +77,7 @@ rails generate versionist:new_api_version <version> <module namespace> [options]
 ```
 rails generate versionist:new_controller <Controller_Name> <version>
 ```
-* Generate new image reference for a model
+* Generate Serializer for deciding what to be included in the returned JSON object
 ```
-rails generate paperclip <Model_Name> <field_name> (ex. rails g paperclip HomeImage image)
+rails generate serializer <Model_Name>
 ```
