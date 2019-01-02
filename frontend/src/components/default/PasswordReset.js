@@ -21,7 +21,7 @@ class PasswordResetForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
         let url = window.location.search.substr(1);
-        let params = url.split("&amp;");
+        let params = url.split("&");
         let reset_token = null;
         let email = null;
         let key_value_pair = params[0].split("=");
