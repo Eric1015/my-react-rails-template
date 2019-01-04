@@ -8,7 +8,7 @@ const Api = require('../../lib/Api');
 class LoginForm extends Component {
     constructor() {
         super();
-        this.state = {email: "", password: "", error_messages: []};
+        this.state = {email: "", password: "", error_messages: [], disabled: false};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -19,6 +19,7 @@ class LoginForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({disabled: true});
         Api.authenticateUser(this.state.email, this.state.password)
         .then((res) => {
             this.props.login(res.jwt);
@@ -31,6 +32,7 @@ class LoginForm extends Component {
                 errors.push(error);
             }
             this.setState({error_messages: errors});
+            this.setState({disabled: false});
         })
     }
 
@@ -42,13 +44,13 @@ class LoginForm extends Component {
                     <ErrorMessages error_messages={this.state.error_messages} />
                     <Form.Field>
                         <label>Email</label>
-                        <input name="email" type="email" onChange={this.handleChange}></input>
+                        <input name="email" type="email" onChange={this.handleChange} disabled={this.state.disabled}></input>
                     </Form.Field>
                     <Form.Field>
                         <label>Password<Link to="/password-reset-request"> (forgot password)</Link></label>
-                        <input name="password" type="password" onChange={this.handleChange}></input>
+                        <input name="password" type="password" onChange={this.handleChange} disabled={this.state.disabled}></input>
                     </Form.Field>
-                    <Button inverted color="red" type="submit">Login</Button>
+                    <Button inverted color="red" type="submit" disabled={this.state.disabled}>Login</Button>
                     <Link to="/"><Button inverted color="red">Back</Button></Link>
                 </Form>
             </div>

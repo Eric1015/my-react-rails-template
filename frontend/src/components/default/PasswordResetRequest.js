@@ -9,7 +9,7 @@ const Api = require('../../lib/Api');
 class PasswordResetRequestForm extends Component {
     constructor() {
         super();
-        this.state = {error_messages: [], email: ""};
+        this.state = {error_messages: [], email: "", disabled: false};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -20,6 +20,7 @@ class PasswordResetRequestForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({disabled: true});
         Api.passwordResetRequest(this.state.email)
         .then((result) => {
             history.push("/thankyou");
@@ -30,6 +31,7 @@ class PasswordResetRequestForm extends Component {
                 errors.push(error);
             }
             this.setState({error_messages: errors});
+            this.setState({disabled: false});
         });
     }
 
@@ -40,9 +42,9 @@ class PasswordResetRequestForm extends Component {
                 <ErrorMessages error_messages={this.state.error_messages} />
                 <Form.Field>
                     <label>Email</label>
-                    <input name="email" type="email" onChange={this.handleChange}></input>
+                    <input name="email" type="email" onChange={this.handleChange} disabled={this.state.disabled}></input>
                 </Form.Field>
-                <Button inverted color="red" type="submit">Send</Button>
+                <Button inverted color="red" type="submit" disabled={this.state.disabled}>Send</Button>
                 <Link to="/"><Button inverted color="red">Back</Button></Link>
             </Form>
         )
