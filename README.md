@@ -2,6 +2,8 @@
 
 This repository provides a basic user sign in template consists of React as the front-end and Rails as the back-end
 
+[日本語版はこちら](README.ja.md)
+
 ## Dependencies
 * Ruby '2.4.4'
 * Rails '5.0' or greater
