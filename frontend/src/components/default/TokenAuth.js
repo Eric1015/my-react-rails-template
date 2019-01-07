@@ -23,14 +23,15 @@ class TokenAuth extends Component {
         this.autoLogin = this.autoLogin.bind(this);
     }
 
-    login(jwt) {
+    login(jwt, history=null) {
         const { cookies } = this.props;
         Api.getCurrentUser(jwt)
         .then((res) => {
             this.setState({ user: res, jwt: jwt }, () => {
                 // Cookie will last for 1 day
                 cookies.set(this.state.cookieName, jwt, {path: '/', maxAge: 86400});
-                history.push("/users/" + this.state.user.id);
+                if (history)
+                    history.push("/users/" + this.state.user.id);
             })
         }).catch((err) => {
 

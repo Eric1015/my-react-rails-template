@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button, Form} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 import ErrorMessages from './ErrorMessages';
+import history from '../../history';
 
 const Api = require('../../lib/Api');
 
@@ -22,7 +23,7 @@ class LoginForm extends Component {
         this.setState({disabled: true});
         Api.authenticateUser(this.state.email, this.state.password)
         .then((res) => {
-            this.props.login(res.jwt);
+            this.props.login(res.jwt, history);
             console.log("You are logged in");
         })
         .catch((err) => {
