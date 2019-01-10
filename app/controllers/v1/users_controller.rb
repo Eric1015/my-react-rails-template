@@ -1,5 +1,8 @@
 class V1::UsersController < V1::BaseController
-    before_action :verify_by_jwt, only: [:update, :destroy]
+    before_action only: [:update, :destroy] do 
+        verify_by_jwt()
+        check_user_id(params[:id])
+    end
 
     def index
         @users = User.all
@@ -31,9 +34,7 @@ class V1::UsersController < V1::BaseController
 
     def destroy
         user = User.find(params[:id])
-        if user.id != current_user.id
-            head(:unauthorized)
-        elsif user
+        if user
             user.destroy
             head(:ok)
         else

@@ -17,4 +17,10 @@ module UserAuthenticationHelper
             head(:unauthorized)
         end
     end
+
+    def check_user_id(user_id)
+        if user_id != current_user.id
+            head(:unauthorized)
+        end
+    end
 end
